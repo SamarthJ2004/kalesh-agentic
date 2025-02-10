@@ -3,9 +3,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Users,
-  Brain,
-  MessageCircle,
-  Flame,
 } from "lucide-react";
 import Image from "next/image";
 import modi from "@/assets/modi.png";
@@ -24,7 +21,7 @@ const LiveIndicator = () => (
   </div>
 );
 
-const DebateCard = ({ title, participants, topic, engagementScore }) => (
+const DebateCard = ({ title, participants, topic }) => (
   <div className="flex-shrink-0 w-[420px] group cursor-pointer">
     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-gray-200/80 shadow-lg">
       <div className="aspect-[16/10] relative">
