@@ -1,9 +1,5 @@
 import React, { useRef } from "react";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Users,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, Users } from "lucide-react";
 import Image from "next/image";
 import modi from "@/assets/modi.png";
 import trump from "@/assets/trump.png";
@@ -131,7 +127,7 @@ const Individual = ({ label }) => {
   };
 
   return (
-    <div className="pt-8">
+    <div className="pt-8" id={label}>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-4xl font-bold bg-gradient-to-br from-blue-500 to-purple-500 bg-clip-text text-transparent">
           {label}

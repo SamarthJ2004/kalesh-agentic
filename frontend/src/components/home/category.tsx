@@ -12,10 +12,20 @@ const Category = () => {
             key={category.name}
             className={`
               relative group overflow-hidden rounded-xl
-              bg-gradient-to-br ${category.gradient}
+              ${category.bgClass}
               hover:shadow-lg transform hover:-translate-y-1
               transition-all duration-300
             `}
+            onClick={(e) => {
+              e.preventDefault();
+              const element = document.getElementById(category.name);
+              if (element) {
+                element.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }}
           >
             <div className="relative z-10 p-6 flex flex-col items-center">
               <category.icon className="w-10 h-10 text-white mb-3" />
@@ -23,10 +33,10 @@ const Category = () => {
             </div>
             <div
               className={`
-              absolute inset-0 bg-gradient-to-br ${category.gradient} ${category.hoverEffect}
-              opacity-0 group-hover:opacity-100
-              transition-opacity duration-300
-            `}
+                absolute inset-0 
+                opacity-0 group-hover:opacity-100
+                transition-opacity duration-300
+              `}
             />
           </button>
         ))}
