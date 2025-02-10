@@ -6,13 +6,15 @@ import LiveChat from "@/components/battle-royale/liveChat";
 import { useParams } from "next/navigation";
 import { IRoom } from "@/lib/db/models/Room";
 //import { getRoomById } from '@/db/mongodb';
-
-// Import ethers directly from the browser-compatible package
 import { ethers } from "ethers";
 import Integration from "@/components/battle-royale/start";
 import { contractABI, contractAddress } from "@/lib/utils/constants/room";
+import { usePrivy } from "@privy-io/react-auth";
+import Navbar from "@/components/common-components/navbar";
 
 export default function BattleRoyale() {
+  const { login, logout, user, ready } = usePrivy();
+  const [display, setDisplay] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedBot, setSelectedBot] = useState<string | number>("");
@@ -124,6 +126,12 @@ export default function BattleRoyale() {
 
   return (
     <div>
+      <Navbar
+        user={user}
+        setDisplay={setDisplay}
+        logout={logout}
+        display={display}
+      />
       <div className="bg-white-100 flex w-auto mt-10 mx-72 text-black">
         <div className="w-55">
           <div className="mt-4">

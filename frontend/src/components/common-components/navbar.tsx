@@ -29,11 +29,11 @@ const Navbar: React.FC<NavbarProps> = ({ user, display, logout, setDisplay }) =>
             <h1 className="text-3xl font-bold text-gray-800">Kalesh</h1>
           </Link>
         </div>
-        <div className="w-1/4">
+        <div className="w-[30%]">
           <input
             type="text"
             placeholder="Search"
-            className="w-full px-5 py-2 rounded-full focus:outline-none text-black"
+            className="w-full px-6 py-2 rounded-full focus:outline-none text-black bg-slate-100"
           />
         </div>
         <div className="flex">

@@ -8,11 +8,15 @@ import { ethers } from "ethers";
 import {
   contractABI,
   contractBytecode,
-  contractAddress,
   FIGHTERS,
 } from "@/lib/utils/constants/room";
+import Navbar from "@/components/common-components/navbar";
+import { usePrivy } from "@privy-io/react-auth";
 
 export default function Room() {
+  const { login, logout, user, ready } = usePrivy();
+  const [display, setDisplay] = useState(false);
+
   const [rooms, setRooms] = useState<IRoom[]>([]);
   const [bot1, setBot1] = useState<string>("");
   const [bot2, setBot2] = useState<string>("");
@@ -164,189 +168,197 @@ export default function Room() {
   };
 
   return (
-    <div className="relative min-h-[calc(100vh-8rem)]">
-      <div className="absolute inset-0 z-[1]">
-        <Ballpit
-          count={450}
-          gravity={1.2}
-          friction={0.8}
-          wallBounce={3}
-          followCursor={false}
-          colors={[[230, 200, 255], 221, 100, 255]}
-          maxSize={0.7}
-          minSize={0.3}
-        />
-      </div>
-      <main className="relative z-[2] pt-24">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-[#2563EB] mb-4">
-            Create Your Battle Arena
-          </h1>
-          <p className="text-gray-600">
-            Place your bets on the ultimate showdown
-          </p>
+    <>
+      <Navbar
+        user={user}
+        setDisplay={setDisplay}
+        logout={logout}
+        display={display}
+      />
+      <div className="relative min-h-[calc(100vh-8rem)]">
+        <div className="absolute inset-0 z-[1]">
+          <Ballpit
+            count={450}
+            gravity={1.2}
+            friction={0.8}
+            wallBounce={3}
+            followCursor={false}
+            colors={[[230, 200, 255], 221, 100, 255]}
+            maxSize={0.7}
+            minSize={0.3}
+          />
         </div>
-
-        <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl p-8 mb-12 max-w-3xl mx-auto border border-[#2563EB]/10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div>
-                <label
-                  htmlFor="bot1"
-                  className="block text-gray-700 font-semibold mb-2"
-                >
-                  First Contender
-                </label>
-                <select
-                  id="bot1"
-                  value={bot1}
-                  onChange={(e) => setBot1(e.target.value)}
-                  className="w-full p-3 rounded-xl border-2 border-[#2563EB]/20 bg-white text-gray-900 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
-                  disabled={isLoading}
-                >
-                  <option value="" disabled>
-                    Choose your fighter
-                  </option>
-                  {FIGHTERS.map((fighter) => (
-                    <option key={fighter.value} value={fighter.value}>
-                      {fighter.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="bot2"
-                  className="block text-gray-700 font-semibold mb-2"
-                >
-                  Second Contender
-                </label>
-                <select
-                  id="bot2"
-                  value={bot2}
-                  onChange={(e) => setBot2(e.target.value)}
-                  className="w-full p-3 rounded-xl border-2 border-[#2563EB]/20 bg-white text-gray-900 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
-                  disabled={isLoading}
-                >
-                  <option value="" disabled>
-                    Choose your fighter
-                  </option>
-                  {FIGHTERS.map((fighter) => (
-                    <option key={fighter.value} value={fighter.value}>
-                      {fighter.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="space-y-6">
-              <div>
-                <label
-                  htmlFor="topic"
-                  className="block text-gray-700 font-semibold mb-2"
-                >
-                  Battle Topic
-                </label>
-                <input
-                  id="topic"
-                  type="text"
-                  placeholder="What's the fight about?"
-                  value={topic}
-                  onChange={(e) => setTopic(e.target.value)}
-                  className="w-full p-3 rounded-xl border-2 border-[#2563EB]/20 bg-white text-gray-900 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
-                  disabled={isLoading}
-                />
-              </div>
-
-              <button
-                onClick={createRoom}
-                disabled={isLoading}
-                className="w-full py-4 px-6 text-lg font-semibold text-white bg-[#2563EB] hover:bg-[#1d4ed8] rounded-xl transform hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoading ? "Creating..." : "Start The Battle!"}
-              </button>
-            </div>
+        <main className="relative z-[2] pt-24">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-[#2563EB] mb-4">
+              Create Your Battle Arena
+            </h1>
+            <p className="text-gray-600">
+              Place your bets on the ultimate showdown
+            </p>
           </div>
 
-          {error && (
-            <div className="mt-4 p-4 bg-red-50 border-l-4 border-[#EF4444] rounded-lg">
-              <p className="text-[#EF4444]">{error}</p>
-            </div>
-          )}
-        </div>
+          <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl p-8 mb-12 max-w-3xl mx-auto border border-[#2563EB]/10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="bot1"
+                    className="block text-gray-700 font-semibold mb-2"
+                  >
+                    First Contender
+                  </label>
+                  <select
+                    id="bot1"
+                    value={bot1}
+                    onChange={(e) => setBot1(e.target.value)}
+                    className="w-full p-3 rounded-xl border-2 border-[#2563EB]/20 bg-white text-gray-900 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
+                    disabled={isLoading}
+                  >
+                    <option value="" disabled>
+                      Choose your fighter
+                    </option>
+                    {FIGHTERS.map((fighter) => (
+                      <option key={fighter.value} value={fighter.value}>
+                        {fighter.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-        <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl p-8 border border-[#2563EB]/10 max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold text-[#2563EB] mb-6">
-            Live Battle Arenas
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="bg-[#F8FAFC]">
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Arena ID
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Battle Link
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Fighters
-                  </th>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
-                    Topic
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {isLoading ? (
-                  <tr>
-                    <td
-                      colSpan={4}
-                      className="px-6 py-4 text-center text-gray-500"
-                    >
-                      Loading...
-                    </td>
+                <div>
+                  <label
+                    htmlFor="bot2"
+                    className="block text-gray-700 font-semibold mb-2"
+                  >
+                    Second Contender
+                  </label>
+                  <select
+                    id="bot2"
+                    value={bot2}
+                    onChange={(e) => setBot2(e.target.value)}
+                    className="w-full p-3 rounded-xl border-2 border-[#2563EB]/20 bg-white text-gray-900 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
+                    disabled={isLoading}
+                  >
+                    <option value="" disabled>
+                      Choose your fighter
+                    </option>
+                    {FIGHTERS.map((fighter) => (
+                      <option key={fighter.value} value={fighter.value}>
+                        {fighter.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <label
+                    htmlFor="topic"
+                    className="block text-gray-700 font-semibold mb-2"
+                  >
+                    Battle Topic
+                  </label>
+                  <input
+                    id="topic"
+                    type="text"
+                    placeholder="What's the fight about?"
+                    value={topic}
+                    onChange={(e) => setTopic(e.target.value)}
+                    className="w-full p-3 rounded-xl border-2 border-[#2563EB]/20 bg-white text-gray-900 focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
+                    disabled={isLoading}
+                  />
+                </div>
+
+                <button
+                  onClick={createRoom}
+                  disabled={isLoading}
+                  className="w-full py-4 px-6 text-lg font-semibold text-white bg-[#2563EB] hover:bg-[#1d4ed8] rounded-xl transform hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? "Creating..." : "Start The Battle!"}
+                </button>
+              </div>
+            </div>
+
+            {error && (
+              <div className="mt-4 p-4 bg-red-50 border-l-4 border-[#EF4444] rounded-lg">
+                <p className="text-[#EF4444]">{error}</p>
+              </div>
+            )}
+          </div>
+
+          <div className="bg-white/90 backdrop-blur-xl rounded-2xl shadow-xl p-8 border border-[#2563EB]/10 max-w-7xl mx-auto">
+            <h2 className="text-2xl font-bold text-[#2563EB] mb-6">
+              Live Battle Arenas
+            </h2>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-[#F8FAFC]">
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                      Arena ID
+                    </th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                      Battle Link
+                    </th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                      Fighters
+                    </th>
+                    <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                      Topic
+                    </th>
                   </tr>
-                ) : rooms.length > 0 ? (
-                  rooms.map((room) => (
-                    <tr
-                      key={room.id}
-                      className="hover:bg-[#F8FAFC] transition-colors duration-200"
-                    >
-                      <td className="px-6 py-4 text-sm text-gray-700">
-                        {room.id}
-                      </td>
-                      <td className="px-6 py-4">
-                        <Link
-                          href={room.link}
-                          className="text-[#2563EB] hover:text-[#1d4ed8] font-medium"
-                        >
-                          {room.link}
-                        </Link>
-                      </td>
-                      <td className="px-6 py-4">{room.bots.join(" 🆚 ")}</td>
-                      <td className="px-6 py-4 text-sm text-gray-700">
-                        {room.topic}
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {isLoading ? (
+                    <tr>
+                      <td
+                        colSpan={4}
+                        className="px-6 py-4 text-center text-gray-500"
+                      >
+                        Loading...
                       </td>
                     </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td
-                      colSpan={4}
-                      className="px-6 py-4 text-center text-gray-500"
-                    >
-                      No rooms found for this wallet.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+                  ) : rooms.length > 0 ? (
+                    rooms.map((room) => (
+                      <tr
+                        key={room.id}
+                        className="hover:bg-[#F8FAFC] transition-colors duration-200"
+                      >
+                        <td className="px-6 py-4 text-sm text-gray-700">
+                          {room.id}
+                        </td>
+                        <td className="px-6 py-4">
+                          <Link
+                            href={room.link}
+                            className="text-[#2563EB] hover:text-[#1d4ed8] font-medium"
+                          >
+                            {room.link}
+                          </Link>
+                        </td>
+                        <td className="px-6 py-4">{room.bots.join(" 🆚 ")}</td>
+                        <td className="px-6 py-4 text-sm text-gray-700">
+                          {room.topic}
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td
+                        colSpan={4}
+                        className="px-6 py-4 text-center text-gray-500"
+                      >
+                        No rooms found for this wallet.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }

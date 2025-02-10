@@ -1,4 +1,4 @@
-import { Volleyball, Gamepad2, Landmark, Film, Coffee } from "lucide-react";
+import { Gamepad2, Volleyball, Landmark, Film, Coffee } from "lucide-react";
 
 export const categories = [
   {
@@ -9,7 +9,7 @@ export const categories = [
   {
     name: "Sports",
     icon: Volleyball,
-    bgClass: "bg-gradient-to-br from-blue-500 to-cyan-800",
+    bgClass: "bg-gradient-to-br from-blue-500 to-cyan-600",
   },
   {
     name: "Politics",
