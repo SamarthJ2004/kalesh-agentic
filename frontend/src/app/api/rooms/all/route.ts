@@ -1,7 +1,7 @@
 // app/api/rooms/all/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { getAllRooms, connectDB } from "@/db/mongodb";
-import { IRoom } from "@/db/models/Room";
+import { getAllRooms, connectDB } from "@/lib/db/mongodb";
+import { IRoom } from "@/lib/db/models/Room";
 
 export async function GET(request: NextRequest) {
   try {

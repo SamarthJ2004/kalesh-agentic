@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getRoomsByAddress } from "@/db/mongodb";
+import { getRoomsByAddress } from "@/lib/db/mongodb";
 
 export async function GET(
   request: NextRequest,

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "@/styles/globals.css";
+import "./globals.css";
 import Providers from "@/auth/providers";
-import Leaderboard from "./components/leaderboard";
-import Footer from "./components/common-components/footer";
+import Leaderboard from "../components/common-components/leaderboard";
+import Footer from "../components/common-components/footer";
 
 export const metadata: Metadata = {
   title: "Kalesh",

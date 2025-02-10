@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import Button from "./common-components/button";
+import Button from "../common-components/button";
 
 const CenteredWalletModal = ({
   walletInfo,

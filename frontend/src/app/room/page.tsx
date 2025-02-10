@@ -2,15 +2,15 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { v4 as uuidv4 } from "uuid";
-import { IRoom } from "@/db/models/Room";
-import Ballpit from "../components/ui/ballPit";
+import { IRoom } from "@/lib/db/models/Room";
+import Ballpit from "../../components/hard-ui/ballPit";
 import { ethers } from "ethers";
 import {
   contractABI,
   contractBytecode,
   contractAddress,
   FIGHTERS,
-} from "@/utils/constants/room";
+} from "@/lib/utils/constants/room";
 
 export default function Room() {
   const [rooms, setRooms] = useState<IRoom[]>([]);

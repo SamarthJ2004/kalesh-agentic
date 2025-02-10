@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { saveRoom } from "@/db/mongodb";
+import { saveRoom } from "@/lib/db/mongodb";
 
 export async function POST(request: NextRequest) {
   try {

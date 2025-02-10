@@ -9,7 +9,7 @@ import {
   APIResponse,
   Message,
   Character,
-} from "@/utils/types/start";
+} from "@/lib/utils/types/start";
 
 const API_URL = "https://autonome.alt.technology/kaleshai-vmyjuu/message";
 const POLLING_INTERVAL = 15000;

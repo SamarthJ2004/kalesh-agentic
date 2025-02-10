@@ -1,8 +1,8 @@
-import Icon from "../../../../public/assets/logo.jpg";
+import Icon from "@/assets/logo.jpg";
 import Link from "next/link";
 import Image from "next/image";
 import Auth from "@/auth/auth";
-import CreateWallet from "../create-wallet";
+import CreateWallet from "../privy/create-wallet";
 import { CircleUserRound } from "lucide-react";
 import Button from "./button";
 

@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import { Heart, DollarSign } from "lucide-react";
-import TextPressure from "@/app/components/textPressure";
-import LiveChat from "@/app/components/liveChat";
+import TextPressure from "@/components/hard-ui/textPressure";
+import LiveChat from "@/components/battle-royale/liveChat";
 import { useParams } from "next/navigation";
-import { IRoom } from "@/db/models/Room";
+import { IRoom } from "@/lib/db/models/Room";
 //import { getRoomById } from '@/db/mongodb';
 
 // Import ethers directly from the browser-compatible package
 import { ethers } from "ethers";
-import Integration from "@/app/integration/start";
+import Integration from "@/components/battle-royale/start";
 
 export default function BattleRoyale() {
   const [isLoading, setIsLoading] = useState(false);

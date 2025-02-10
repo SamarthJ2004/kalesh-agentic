@@ -1,13 +1,13 @@
 "use client";
 
-import ImageSlider from "./components/carousel";
-import Live from "./components/live";
-import Category from "./components/category";
+import ImageSlider from "../components/home/carousel";
+import Live from "../components/home/live";
+import Category from "../components/home/category";
 import { usePrivy } from "@privy-io/react-auth";
 import { useState } from "react";
-import Individual from "./components/individual";
-import Navbar from "./components/common-components/navbar";
-import { VortexDemo } from "./components/ui/final_vortex";
+import Individual from "../components/home/individual";
+import Navbar from "../components/common-components/navbar";
+import { VortexDemo } from "../components/hard-ui/final_vortex";
 
 export default function Home() {
   const { login, logout, user, ready } = usePrivy();
