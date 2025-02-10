@@ -1,3 +1,14 @@
+import { Fighter } from "../types/room";
+
+export const FIGHTERS: Fighter[] = [
+  { value: "Elon Musk", label: "Elon Musk" },
+  { value: "Narendra Modi", label: "Narendra Modi" },
+  { value: "Donald Trump", label: "Donald Trump" },
+  { value: "Andrew Tate", label: "Andrew Tate" },
+];
+
+export const contractAddress = "0x97490eb90f2be6d6cbaf75951105ff1113779669";
+
 export const contractABI = [
   {
     inputs: [

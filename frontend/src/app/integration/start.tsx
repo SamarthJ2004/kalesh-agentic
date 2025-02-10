@@ -3,33 +3,13 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-
-interface APIMessage {
-  text: string;
-  type: string;
-}
-
-interface APIContext {
-  debateId: string;
-  lastCharacter: Character | null;
-  characters: Character[];
-  timeRemaining: number;
-  status: "active" | "completed";
-}
-
-interface APIResponse {
-  messages: APIMessage[];
-  context: APIContext;
-}
-
-interface Message {
-  id: number;
-  character: Character;
-  content: string;
-  timestamp: string;
-}
-
-type Character = "musk" | "tate";
+import {
+  APIContext,
+  APIMessage,
+  APIResponse,
+  Message,
+  Character,
+} from "@/utils/types/start";
 
 const API_URL = "https://autonome.alt.technology/kaleshai-vmyjuu/message";
 const POLLING_INTERVAL = 15000;
@@ -40,7 +20,6 @@ const Integration: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [debateId, setDebateId] = useState<string | null>(null);
   const [lastCharacter, setLastCharacter] = useState<Character | null>(null);
   const [timeRemaining, setTimeRemaining] = useState<number | null>(null);
   const [debateStatus, setDebateStatus] = useState<
@@ -82,7 +61,7 @@ const Integration: React.FC = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       const res = await fetch(
-        `https://autonome.alt.technology/kaleshai-vmyjuu/battles/${debateIdRef.current}/evaluation`
+        `${process.env.NEXT_PUBLIC_AUTONOME_API}/battles/${debateIdRef.current}/evaluation`
       );
       const data = await res.json();
       if (data.evaluation) {

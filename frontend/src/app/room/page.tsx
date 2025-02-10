@@ -5,24 +5,14 @@ import { v4 as uuidv4 } from "uuid";
 import { IRoom } from "@/db/models/Room";
 import Ballpit from "../components/ui/ballPit";
 import { ethers } from "ethers";
-import { contractABI, contractBytecode } from "./contractABI";
-// Types for the component
-interface Fighter {
-  value: string;
-  label: string;
-}
-
-const contractAddress = "0x97490eb90f2be6d6cbaf75951105ff1113779669";
-
-const FIGHTERS: Fighter[] = [
-  { value: "Elon Musk", label: "Elon Musk" },
-  { value: "Narendra Modi", label: "Narendra Modi" },
-  { value: "Donald Trump", label: "Donald Trump" },
-  { value: "Andrew Tate", label: "Andrew Tate" },
-];
+import {
+  contractABI,
+  contractBytecode,
+  contractAddress,
+  FIGHTERS,
+} from "@/utils/constants/room";
 
 export default function Room() {
-  // State with proper typing
   const [rooms, setRooms] = useState<IRoom[]>([]);
   const [bot1, setBot1] = useState<string>("");
   const [bot2, setBot2] = useState<string>("");
