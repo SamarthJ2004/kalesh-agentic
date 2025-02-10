@@ -1,3 +1,5 @@
+import { categories } from "@/lib/utils/constants/home";
+
 const Category = () => {
   return (
     <div className="py-8">

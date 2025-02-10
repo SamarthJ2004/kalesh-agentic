@@ -2,7 +2,7 @@
 
 import ImageSlider from "../components/home/carousel";
 import Live from "../components/home/live";
-import Category from "../components/home/category";
+import Category from "@/components/home/category";
 import { usePrivy } from "@privy-io/react-auth";
 import { useState } from "react";
 import Individual from "../components/home/individual";
