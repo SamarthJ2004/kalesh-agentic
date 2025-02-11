@@ -358,6 +358,10 @@ export default function Room() {
               </table>
             </div>
           </div>
+
+          <div className="h-10 w-full opacity-0">
+            gap
+          </div>
         </main>
       </div>
       <Footer />

@@ -53,6 +53,7 @@ const Live = () => {
         }
         const data = await response.json();
         setRooms(data.rooms);
+        console.log("rooms:", rooms);
       } catch (error) {
         console.error("Error:", error);
         setError("Failed to load battle rooms");
