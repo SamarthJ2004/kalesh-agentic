@@ -1,8 +1,11 @@
-"use client"
-import { Trophy, Medal } from "lucide-react";
+"use client";
+import { Trophy, Medal, ChevronLeft, ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const Leaderboard = () => {
+  const [isMinimized, setIsMinimized] = useState(false);
+
   const leaderboardData = [
     { id: 1, name: "Alice", score: 2850, rank: 1 },
     { id: 2, name: "Bob", score: 2720, rank: 2 },
@@ -33,18 +36,42 @@ const Leaderboard = () => {
         );
     }
   };
+
   const path = usePathname();
 
   return (
-    <div className={`fixed top-16 left-0 w-72 h-[calc(100vh-4rem)] ${(path=="/room")&&"hidden"} bg-white shadow-lg border-r border-gray-200`}>
-      <div className="p-6">
+    <div
+      className={`fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300 ${
+        path == "/room" && "hidden"
+      } ${
+        isMinimized ? "w-12" : "w-72"
+      } bg-white shadow-lg border-r border-gray-200`}
+    >
+      {/* Toggle Button */}
+      <button
+        onClick={() => setIsMinimized(!isMinimized)}
+        className="absolute -right-4 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md border border-gray-200 hover:bg-gray-50 transition-colors duration-150 z-10"
+      >
+        {isMinimized ? (
+          <ChevronRight className="w-4 h-4 text-gray-600" />
+        ) : (
+          <ChevronLeft className="w-4 h-4 text-gray-600" />
+        )}
+      </button>
+
+      <div className={`p-6 ${isMinimized ? "hidden" : ""}`}>
         <h1 className="flex items-center justify-center text-3xl font-bold text-gray-800 mb-6">
           <Trophy className="w-8 h-8 text-yellow-500 mr-2" />
           Leaderboard
         </h1>
       </div>
 
-      <div className="px-4 pb-6">
+      {/* Minimized View */}
+      <div className={`p-2 ${!isMinimized ? "hidden" : ""}`}>
+        <Trophy className="w-8 h-8 text-yellow-500 mx-auto" />
+      </div>
+
+      <div className={`px-4 pb-6 ${isMinimized ? "hidden" : ""}`}>
         <div className="overflow-y-auto h-[calc(100vh-12rem)] rounded-lg">
           {leaderboardData.map((player) => (
             <div
