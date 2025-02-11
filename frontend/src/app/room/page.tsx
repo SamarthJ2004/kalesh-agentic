@@ -12,6 +12,7 @@ import {
 } from "@/lib/utils/constants/room";
 import Navbar from "@/components/common-components/navbar";
 import { usePrivy } from "@privy-io/react-auth";
+import Footer from "@/components/common-components/footer";
 
 export default function Room() {
   const { login, logout, user, ready } = usePrivy();
@@ -131,7 +132,7 @@ export default function Room() {
       const roomId = uuidv4().slice(0, 6);
       const roomLink = `/battle-royale/${roomId}`;
 
-      const roomContractAddress = await deployRoomContract(roomId);
+      const contractAddress = await deployRoomContract(roomId);
 
       const details = {
         id: roomId,
@@ -139,7 +140,7 @@ export default function Room() {
         bots: [bot1, bot2],
         topic,
         userAddress,
-        roomContractAddress,
+        contractAddress,
       };
 
       const response = await fetch("/api/rooms", {
@@ -178,14 +179,14 @@ export default function Room() {
       <div className="relative min-h-[calc(100vh-8rem)]">
         <div className="absolute inset-0 z-[1]">
           <Ballpit
-            count={450}
-            gravity={1.2}
+            count={300}
+            gravity={1}
             friction={0.8}
-            wallBounce={3}
+            wallBounce={5}
             followCursor={false}
             colors={[[230, 200, 255], 221, 100, 255]}
-            maxSize={0.7}
-            minSize={0.3}
+            maxSize={0.8}
+            minSize={0.4}
           />
         </div>
         <main className="relative z-[2] pt-24">
@@ -359,6 +360,7 @@ export default function Room() {
           </div>
         </main>
       </div>
+      <Footer />
     </>
   );
 }

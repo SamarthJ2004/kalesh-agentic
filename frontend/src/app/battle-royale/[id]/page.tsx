@@ -132,7 +132,7 @@ export default function BattleRoyale() {
         logout={logout}
         display={display}
       />
-      <div className="bg-white-100 flex w-auto mt-10 mx-72 text-black">
+      <div className="bg-white-100 flex mt-20 text-black mx-auto">
         <div className="w-55">
           <div className="mt-4">
             <div style={{ position: "relative", height: "120px" }}>

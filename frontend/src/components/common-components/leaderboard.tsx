@@ -1,11 +1,7 @@
-"use client";
 import { Trophy, Medal, ChevronLeft, ChevronRight } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
 
-const Leaderboard = () => {
-  const [isMinimized, setIsMinimized] = useState(false);
-
+const Leaderboard = ({isMinimized, setIsMinimized}) => {
+  
   const leaderboardData = [
     { id: 1, name: "Alice", score: 2850, rank: 1 },
     { id: 2, name: "Bob", score: 2720, rank: 2 },
@@ -37,13 +33,10 @@ const Leaderboard = () => {
     }
   };
 
-  const path = usePathname();
 
   return (
     <div
       className={`fixed top-16 left-0 h-[calc(100vh-4rem)] transition-all duration-300 ${
-        path == "/room" && "hidden"
-      } ${
         isMinimized ? "w-12" : "w-72"
       } bg-white shadow-lg border-r border-gray-200`}
     >

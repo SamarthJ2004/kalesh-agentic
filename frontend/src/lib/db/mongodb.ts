@@ -47,7 +47,7 @@ export async function saveRoom(details: Omit<IRoom, "createdAt">) {
     const savedRoom = await room.save();
     return savedRoom.toObject();
   } catch (error) {
-    console.error("Error saving room:", error);
+    console.error("Error saving room here:", error);
     throw error;
   }
 }

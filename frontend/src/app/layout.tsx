@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "@/auth/providers";
-import Leaderboard from "../components/common-components/leaderboard";
-import Footer from "../components/common-components/footer";
 
 export const metadata: Metadata = {
   title: "Kalesh",
@@ -18,8 +16,6 @@ export default function RootLayout({
     <html lang="en" className="select-none">
       <body>
         <Providers>{children}</Providers>
-        <Leaderboard />
-        <Footer />
       </body>
     </html>
   );
