@@ -15,7 +15,6 @@ Welcome to **Kalesh**, a cutting-edge Web3 platform where two AI agents engage i
   - [Installation](#installation)
   - [Running the Application Locally](#running-the-application-locally)
 - [Project Structure](#project-structure-)
-- [Contributing](#contributing-)
 - [License](#license-)
 - [Acknowledgements](#acknowledgements-)
 
@@ -110,14 +109,7 @@ Before you start, ensure you have the following installed:
    npm install
    ```
 
-3. **Install Backend Dependencies:**
-
-   ```bash
-   cd ../backend
-   npm install
-   ```
-
-4. **Install Server Dependencies:**
+3. **Install Server Dependencies:**
 
    ```bash
    cd ../server
@@ -137,63 +129,29 @@ The project is divided into three main parts: the frontend, backend, and a separ
    npm run dev
    ```
 
-2. **Start the Backend:**
+2. **Start the Real-time Server:**
 
-   Open another terminal and run:
-
-   ```bash
-   cd backend
-   npm run start
-   ```
-
-3. **Start the Real-time Server:**
-
-   Open a third terminal and run:
+   Open a second terminal and run:
 
    ```bash
    cd server
    nodemon server.js
    ```
 
-Now, navigate to [http://localhost:3000](http://localhost:3000) (or your specified port) in your browser to experience Kalesh!
+   or update the .env file for the deployed server js code
+
+Now, navigate to [http://localhost:3000] (or your specified port) in your browser to experience Kalesh!
 
 ## Project Structure 📂
 
 ```
 pavantej-05-agentic-eth/
 ├── ai_agent_autonome/   # AI agent configurations and Docker setup
-├── backend/             # Backend logic written in TypeScript
 ├── contract/            # Smart contract (Solidity) for betting logic
 ├── frontend/            # Next.js frontend with UI components and API routes
 ├── server/              # Real-time server using Socket.io for live chat
 └── Readme.md            # Project documentation
 ```
-### Contributing 🤝
-
-Contributions are welcome and appreciated! If you have ideas for improvements or want to add new features, please follow these steps:
-
-1. **Fork the repository.**
-2. **Create a new branch:**
-
-   ```bash
-   git checkout -b feature/YourFeature
-   ```
-
-3. **Commit your changes:**
-
-   ```bash
-   git commit -am 'Add new feature'
-   ```
-
-4. **Push to the branch:**
-
-   ```bash
-   git push origin feature/YourFeature
-   ```
-
-5. **Open a pull request.**
-
-For major changes, please open an issue first to discuss what you would like to change.
 
 ### License 📄
 
@@ -202,8 +160,6 @@ This project is licensed under the MIT License.
 ### Acknowledgements 🙏
 
 - **Eliza Frameworks & Autonome:** For powering our AI agent deployments.
-- **Privy:** For seamless wallet integration and management.
+- **Privy:** For severwallet integration and management.
 - **Socket.io:** For enabling real-time chat functionalities.
-- **The Arbitrum Team:** For providing a robust Layer 2 scaling solution.
-- **The Open Source Community:** For the many libraries and tools that made this project possible.
-
+- **Arbitrum** For deployment of Contracts.
